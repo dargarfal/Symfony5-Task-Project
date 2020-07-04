@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Security\Role;
+use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -23,6 +24,9 @@ class User implements UserInterface
     protected \DateTime $createdAt;
 
     protected \DateTime $updatedAt;
+
+    /** @var Collection|Project[] */
+    protected Collection $projects;
 
     /**
      * @throws \Exception
@@ -113,5 +117,18 @@ class User implements UserInterface
     public function equals(User $user): bool
     {
         return $this->getId() === $user->getId();
+    }
+
+    /**
+     * @return Project[]|Collection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    public function addProjects(Project $project): void
+    {
+        $this->projects->add($project);
     }
 }

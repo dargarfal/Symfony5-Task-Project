@@ -1,0 +1,12 @@
+App\Entity\Project:
+  attributes:
+    project_id:
+      groups: ['project_read']
+    name:
+      groups: ['project_read', 'project_post', 'project_put']
+    description:
+      groups: ['project_read', 'project_post', 'project_put']
+    createdAt:
+      groups: ['project_read']
+    updatedAt:
+      groups: ['project_read']

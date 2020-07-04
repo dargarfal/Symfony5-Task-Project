@@ -1,28 +1,22 @@
-App\Entity\User:
+App\Entity\Project:
   type: entity
-  table: user
+  table: project
 
   id:
-    id:
+    project_id:
       type: string
 
-  oneToMany:
-    projects:
-      targetEntity: Project
-      mappedBy: user
+  ManyToOne:
+    owner:
+      targetEntity: User
+      mappedBy: projects
 
   fields:
     name:
       type: string
       nullable: false
-    email:
+    description:
       type: string
-      nullable: false
-    password:
-      type: string
-      nullable: false
-    roles:
-      type: simple_array
       nullable: false
     createdAt:
       type: datetime
@@ -33,3 +27,4 @@ App\Entity\User:
 
   lifecycleCallbacks:
     preUpdate: [markAsUpdated]
+
