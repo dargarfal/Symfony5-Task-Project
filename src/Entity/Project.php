@@ -16,17 +16,23 @@ class Project
 
     protected \DateTime $updatedAt;
 
+    //Debo crear el objeto de User y configurar la relaciones
+    /** @var User */
+    protected User $user;
+
     //Falta crear la coleccion de tasks
 
     /**
      * @throws \Exception
      */
-    public function __construct(string $name, string $description, string $project_id = null)
+    public function __construct(string $name, string $description, string $project_id = null, User $user)
     {
         $this->name = $name;
         $this->description = $description;
         $this->project_id = $project_id ?? Uuid::uuid4()->toString();
         $this->createdAt = new \DateTime();
+        $this->user = $user;
+        $this->user->addProjects($this);
         //Falta inicializar la coleccion de tasks
     }
 
@@ -68,6 +74,14 @@ class Project
     public function markAsUpdated(): void
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
     }
 
     //Falta el getter de las tasks

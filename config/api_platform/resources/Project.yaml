@@ -21,10 +21,13 @@ App\Entity\Project:
               required:
                 - name
                 - description
+                - user
               properties:
                 name:
                   type: string
                 description:
+                  type: string
+                user:
                   type: string
   itemOperations:
     get:

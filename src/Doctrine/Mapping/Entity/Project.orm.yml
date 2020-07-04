@@ -7,9 +7,8 @@ App\Entity\Project:
       type: string
 
   ManyToOne:
-    owner:
+    user:
       targetEntity: User
-      mappedBy: projects
 
   fields:
     name:

@@ -6,6 +6,8 @@ App\Entity\Project:
       groups: ['project_read', 'project_post', 'project_put']
     description:
       groups: ['project_read', 'project_post', 'project_put']
+    user:
+      groups: ['project_read', 'project_post']
     createdAt:
       groups: ['project_read']
     updatedAt:
