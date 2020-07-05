@@ -23,7 +23,7 @@ class ProjectVoter extends BaseVoter
     }
 
     /**
-     * @param Project\null $subject
+     * @param Project|null $subject
      */
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
@@ -35,9 +35,32 @@ class ProjectVoter extends BaseVoter
             if (null === $subject) {
                 return $this->security->isGranted(Role::ROLE_ADMIN);
             }
-
+            return $this->security->isGranted(Role::ROLE_ADMIN) || $subject->isOwnerBy($tokenUser);
 
         }
+
+        if (self::PROJECT_CREATE === $attribute)
+        {
+            return true;
+        }
+
+        if(self::PROJECT_UPDATE === $attribute)
+        {
+            if (null === $subject) {
+                return $this->security->isGranted(Role::ROLE_ADMIN)
+                    || $subject->isOwnerBy($tokenUser);
+            }
+        }
+
+        if(self::PROJECT_DELETE)
+        {
+            if (null === $subject) {
+                return $this->security->isGranted(Role::ROLE_ADMIN)
+                    || $subject->isOwnerBy($tokenUser);
+            }
+        }
+
+        return false;
     }
 
     private function getSupportedAttributes(): array

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Security\Role;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -26,7 +27,7 @@ class User implements UserInterface
     protected \DateTime $updatedAt;
 
     /** @var Collection|Project[] */
-    protected Collection $projects;
+    protected ?Collection $projects = null;
 
     /**
      * @throws \Exception
@@ -37,6 +38,7 @@ class User implements UserInterface
         $this->name = $name;
         $this->email = $email;
         $this->roles[] = Role::ROLE_USER;
+        $this->projects = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->markAsUpdated();
     }
@@ -122,7 +124,7 @@ class User implements UserInterface
     /**
      * @return Project[]|Collection
      */
-    public function getProjects()
+    public function getProjects() : Collection
     {
         return $this->projects;
     }
