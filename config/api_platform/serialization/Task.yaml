@@ -1,0 +1,14 @@
+App\Entity\Task:
+  attributes:
+    task_id:
+      groups: ['task_read']
+    name:
+      groups: ['task_read', 'task_post']
+    description:
+      groups: ['task_read', 'task_post', 'task_put']
+    project:
+      groups: ['task_read', 'task_post']
+    createdAt:
+      groups: ['task_read']
+    updatedAt:
+      groups: ['task_read']

@@ -1,48 +1,48 @@
-App\Entity\Project:
+App\Entity\Task:
   attributes:
     normalization_context:
-      groups: ['project_read']
+      groups: ['task_read']
   collectionOperations:
     get:
       method: 'GET'
-      security: 'is_granted("PROJECT_READ")'
+      security: 'is_granted("TASK_READ")'
     post:
       method: 'POST'
-      security: 'is_granted("PROJECT_CREATE")'
+      security: 'is_granted("TASK_CREATE")'
       denormalization_context:
-        groups: ['project_post']
+        groups: ['task_post']
       swagger_context:
         parameters:
           - in: body
-            name: project
-            description: The project to create
+            name: task
+            description: The task to create
             schema:
               type: object
               required:
                 - name
                 - description
-                - user
+                - project
               properties:
                 name:
                   type: string
                 description:
                   type: string
-                user:
+                project:
                   type: string
   itemOperations:
     get:
       method: 'GET'
-      security: 'is_granted("PROJECT_READ", object)'
+      security: 'is_granted("TASK_READ", object)'
     put:
       method: 'PUT'
-      security: 'is_granted("PROJECT_UPDATE", object)'
+      security: 'is_granted("TASK_UPDATE", object)'
       denormalization_context:
-        groups: ['project_put']
+        groups: ['task_put']
       swagger_context:
         parameters:
           - in: body
-            name: project
-            description: The project to update
+            name: task
+            description: The task to update
             schema:
               type: object
               required:
@@ -55,10 +55,4 @@ App\Entity\Project:
                   type: string
     delete:
       method: 'DELETE'
-      security: 'is_granted("PROJECT_DELETE", object)'
-  properties:
-    tasks:
-      subresource:
-        subresourceClass: 'App\Entity\Task'
-        collection: true
-        maxDepth: 1
+      security: 'is_granted("TASK_DELETE", object)'

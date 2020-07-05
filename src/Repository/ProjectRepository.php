@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Repository;
-
 
 use App\Entity\Project;
 use App\Entity\User;
@@ -24,8 +22,7 @@ class ProjectRepository extends BaseRepository
 
     public function userIsOwner(Project $project, User $user): bool
     {
-        if($project->getUser()->getId() === $user->getId())
-        {
+        if ($project->getUser()->getId() === $user->getId()) {
             return true;
         }
 

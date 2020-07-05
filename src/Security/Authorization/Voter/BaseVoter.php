@@ -11,9 +11,7 @@ use Symfony\Component\Security\Core\Security;
 abstract class BaseVoter extends Voter
 {
     protected Security $security;
-    /**
-     * @var ProjectRepository
-     */
+
     protected ProjectRepository $projectRepository;
 
     public function __construct(Security $security, ProjectRepository $projectRepository)

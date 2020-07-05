@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Api\Listener\Project;
+namespace App\Api\Listener\Task;
 
 use App\Api\Listener\PreWriteListener;
-use App\Entity\Project;
+use App\Entity\Task;
 use App\Entity\User;
 use App\Exception\Project\CannotAddAnotherOwnerException;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class ProjectPreWriteListener implements PreWriteListener
+class TaskPreWriteListener implements PreWriteListener
 {
-    private const POST_PROJECT = 'api_projects_post_collection';
+    private const POST_TASK = 'api_tasks_post_collection';
 
     private TokenStorageInterface $tokenStorage;
 
@@ -27,11 +27,11 @@ class ProjectPreWriteListener implements PreWriteListener
 
         $request = $event->getRequest();
 
-        if (self::POST_PROJECT === $request->get('_route')) {
-            /** @var Project $project */
-            $project = $event->getControllerResult();
+        if (self::POST_TASK === $request->get('_route')) {
+            /** @var Task $task */
+            $task = $event->getControllerResult();
 
-            if (!$project->isOwnerBy($tokenUser)) {
+            if (!$task->isOwnerBy($tokenUser)) {
                 throw CannotAddAnotherOwnerException::create();
             }
         }

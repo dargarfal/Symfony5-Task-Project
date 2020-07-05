@@ -22,9 +22,9 @@ class User implements UserInterface
 
     protected array $roles;
 
-    protected \DateTime $createdAt;
+    protected ?\DateTime $createdAt = null;
 
-    protected \DateTime $updatedAt;
+    protected ?\DateTime $updatedAt = null;
 
     /** @var Collection|Project[] */
     protected ?Collection $projects = null;
@@ -124,7 +124,7 @@ class User implements UserInterface
     /**
      * @return Project[]|Collection
      */
-    public function getProjects() : Collection
+    public function getProjects(): Collection
     {
         return $this->projects;
     }

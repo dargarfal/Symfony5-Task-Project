@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Entity;
-
 
 use Ramsey\Uuid\Uuid;
 
@@ -16,9 +14,9 @@ class Task
 
     private Project $project;
 
-    protected \DateTime $createdAt;
+    protected ?\DateTime $createdAt = null;
 
-    protected \DateTime $updatedAt;
+    protected ?\DateTime $updatedAt = null;
 
     /**
      * @throws \Exception
@@ -52,7 +50,7 @@ class Task
         return $this->description;
     }
 
-     public function setDescription(string $description): void
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -77,4 +75,13 @@ class Task
         $this->updatedAt = new \DateTime();
     }
 
+    public function isOwnerBy(User $user): bool
+    {
+        return $this->getProject()->getUser()->getId() === $user->getId();
+    }
+
+    public function isProjectBy(Project $project): bool
+    {
+        return $this->project->getProjectId() === $project->getProjectId();
+    }
 }

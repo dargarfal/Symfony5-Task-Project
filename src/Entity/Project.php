@@ -14,15 +14,14 @@ class Project
 
     private string $description;
 
-    protected \DateTime $createdAt;
+    protected ?\DateTime $createdAt = null;
 
-    protected \DateTime $updatedAt;
+    protected ?\DateTime $updatedAt = null;
 
     protected User $user;
 
     /** @var Collection|Task[] */
     protected ?Collection $tasks = null;
-
 
     /**
      * @throws \Exception
@@ -35,6 +34,7 @@ class Project
         $this->createdAt = new \DateTime();
         $this->user = $user;
         $this->tasks = new ArrayCollection();
+        $this->markAsUpdated();
     }
 
     public function getProjectId(): ?string
@@ -77,9 +77,6 @@ class Project
         $this->updatedAt = new \DateTime();
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;
@@ -97,5 +94,4 @@ class Project
     {
         return $this->tasks;
     }
-
 }

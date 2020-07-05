@@ -38,3 +38,9 @@ App\Entity\User:
     delete:
       method: 'DELETE'
       security: 'is_granted("USER_DELETE", object)'
+  properties:
+    projects:
+      subresource:
+        subresourceClass: 'App\Entity\Project'
+        collection: true
+        maxDepth: 1
