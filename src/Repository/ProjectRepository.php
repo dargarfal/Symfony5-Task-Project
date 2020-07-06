@@ -28,4 +28,9 @@ class ProjectRepository extends BaseRepository
 
         return false;
     }
+
+    public function save(Project $project): void
+    {
+        $this->saveEntity($project);
+    }
 }

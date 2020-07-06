@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 
 class Project
 {
-    private ?string $project_id;
+    protected string $project_id;
 
     private string $name;
 
@@ -26,11 +26,11 @@ class Project
     /**
      * @throws \Exception
      */
-    public function __construct(string $name, string $description, string $project_id = null, User $user)
+    public function __construct(string $name, string $description, User $user)
     {
         $this->name = $name;
         $this->description = $description;
-        $this->project_id = $project_id ?? Uuid::uuid4()->toString();
+        $this->project_id = Uuid::uuid4()->toString();
         $this->createdAt = new \DateTime();
         $this->user = $user;
         $this->tasks = new ArrayCollection();
@@ -84,7 +84,7 @@ class Project
 
     public function isOwnerBy(User $user): bool
     {
-        return $this->getUser()->getId() === $user->getId();
+        return $this->user->getId() === $user->getId();
     }
 
     /**

@@ -9,6 +9,7 @@ App\Entity\Task:
   manyToOne:
     project:
       targetEntity: Project
+      iverserdBy: tasks
 
   field:
     name:

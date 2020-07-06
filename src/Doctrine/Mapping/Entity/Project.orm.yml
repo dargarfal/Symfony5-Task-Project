@@ -5,10 +5,14 @@ App\Entity\Project:
   id:
     project_id:
       type: string
+      unique: true
+      generator:
+        strategy: NONE
 
   manyToOne:
     user:
       targetEntity: User
+      iverserdBy: projects
 
   oneToMany:
     tasks:

@@ -31,7 +31,7 @@ class ProjectPreWriteListener implements PreWriteListener
             /** @var Project $project */
             $project = $event->getControllerResult();
 
-            if (!$project->isOwnerBy($tokenUser)) {
+            if ($project->getUser()->getId() !== $tokenUser->getId()) {
                 throw CannotAddAnotherOwnerException::create();
             }
         }

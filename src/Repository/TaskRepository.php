@@ -10,4 +10,9 @@ class TaskRepository extends BaseRepository
     {
         return Task::class;
     }
+
+    public function save(Task $task): void
+    {
+        $this->saveEntity($task);
+    }
 }

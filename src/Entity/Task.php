@@ -24,12 +24,11 @@ class Task
     public function __construct(
         string $name,
         string $description,
-        Project $project,
-        string $task_id = null)
+        Project $project)
     {
         $this->name = $name;
         $this->description = $description;
-        $this->task_id = $task_id ?? Uuid::uuid4()->toString();
+        $this->task_id = Uuid::uuid4()->toString();
         $this->project = $project;
         $this->createdAt = new \DateTime();
         $this->markAsUpdated();

@@ -14,7 +14,7 @@ class ProjectVoter extends BaseVoter
     private const PROJECT_UPDATE = 'PROJECT_UPDATE';
     private const PROJECT_DELETE = 'PROJECT_DELETE';
 
-    protected function supports(string $attribute, $subject)
+    protected function supports(string $attribute, $subject): bool
     {
         return \in_array($attribute, $this->getSupportedAttributes(), true);
     }
@@ -22,7 +22,7 @@ class ProjectVoter extends BaseVoter
     /**
      * @param Project|null $subject
      */
-    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         /** @var User $tokenUser */
         $tokenUser = $token->getUser();

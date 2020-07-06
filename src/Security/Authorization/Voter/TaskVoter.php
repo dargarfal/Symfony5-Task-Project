@@ -14,7 +14,7 @@ class TaskVoter extends BaseVoter
     private const TASK_UPDATE = 'TASK_UPDATE';
     private const TASK_DELETE = 'TASK_DELETE';
 
-    protected function supports(string $attribute, $subject)
+    protected function supports(string $attribute, $subject): bool
     {
         return \in_array($attribute, $this->getSupportedAttributes(), true);
     }
@@ -22,7 +22,7 @@ class TaskVoter extends BaseVoter
     /**
      * @param Task|null $subject
      */
-    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
+    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
         /** @var User $tokenUser */
         $tokenUser = $token->getUser();

@@ -11,7 +11,7 @@ api_platform:
             apiKey:
                 name: Authorization
                 type: header
-    title: 'SF5 Tasks API'
+    title: 'Symfony 5 Tasks API'
     description: 'An awesome API built with Symfony 5.0, PHP 7.4 and API Platform'
     version: 1.0
     show_webby: false
