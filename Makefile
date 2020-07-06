@@ -53,6 +53,7 @@ prepare: ## Runs backend commands
 	$(MAKE) be-sf-permissions
 	$(MAKE) composer-install
 	$(MAKE) migrations
+	$(MAKE) generate-ssh-keys
 
 # Backend commands
 be-sf-permissions: ## Configure the Symfony permissions
